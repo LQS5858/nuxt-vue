@@ -1,0 +1,77 @@
+//global css
+@import 'variable';
+@import 'reset';
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/*组件容器以及内容容器样式*/
+.container {
+  position: relative;
+  box-sizing: border-box;
+  background: #f2f2f2;
+  .top-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  .sub-container {
+    min-height: 100%;
+    margin: 0 20px;
+    background: #fff;
+    border-top: 80px solid #f2f2f2;
+    .table-part-container {
+      background: #fff;
+      min-height: 100%;
+      &:before,
+      &:after {
+        content: '';
+        display: table;
+      }
+    }
+  }
+}
+
+/*分页组件样式*/
+.pagination-container {
+  display: flex;
+  margin-top: 15px;
+  justify-content: flex-end;
+}
+/*是否试用期显示样式*/
+.is-probation{
+  display: inline-block;
+  font-size: 9px;
+  color: #E67A79;
+  transform:scale(9/12);
+}
+
+// 容器相同的margin-top
+.mt {
+  margin-top: 20px;
+}
+
+// 容器相同的上左右maring
+.mtlf {
+  margin: 20px 20px 0
+}
+
+// 容器相同的左右paddin
+.prl {
+  padding: 0 20px;
+}
+
+.main-color {
+  color: @mainColor;
+}
+
