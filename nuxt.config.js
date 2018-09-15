@@ -33,6 +33,25 @@ module.exports = {
           exclude: /(node_modules)/
         })
       }
+      const sassResourcesLoader = {
+        loader: 'sass-resources-loader',
+        options: {
+          resources: [
+            'assets/style/variable.less'
+          ]
+        }
+      }
+      // 遍历nuxt定义的loader配置，向里面添加新的配置。
+      config.module.rules.forEach((rule) => {
+        if (rule.test.toString() === '/\\.vue$/') {
+          rule.options.loaders.sass.push(sassResourcesLoader)
+          rule.options.loaders.scss.push(sassResourcesLoader)
+          rule.options.loaders.less.push(sassResourcesLoader)
+        }
+        if (['/\\.sass$/', '/\\.scss$/', '/\\.less$/'].indexOf(rule.test.toString()) !== -1) {
+          rule.use.push(sassResourcesLoader)
+        }
+      })
     },
     vendor: ['element-ui', 'axios']
   },
@@ -54,7 +73,13 @@ module.exports = {
   }],
   css:
     [{
-      src: '~assets/style/global.less',
+      src: '~/assets/style/reset.less',
+      lang: 'less'
+    }, {
+      src: '~/assets/style/variable.less',
+      lang: 'less'
+    }, {
+      src: '~/assets/style/global.less',
       lang: 'less'
     },
       'element-ui/lib/theme-chalk/index.css']

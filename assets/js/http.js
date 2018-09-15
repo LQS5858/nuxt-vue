@@ -45,13 +45,9 @@ service.interceptors.response.use(response => {
     window.location.href = '/login'
   }
   let msg = data.code ? data.msg : `${response.config.headers['method']} : ${data.error}`
-  Message({
-    message: msg,
-    type: 'error',
-    duration: 5 * 1000
-  })
+
   data.message = msg
-  return Promise.reject(data)
+  return Promise.resolve(data)
 }, error => {
   loading.close()
   if (error.code === 'ECONNABORTED' && error.message.indexOf('timeout') !== -1) {
