@@ -30,8 +30,11 @@ const loading = {
 }
 
 service.interceptors.request.use(params => {
-  if (!params.data || (params.data && !params.data.hideLoading)) { loading.open(params.loadText) }
-  params.headers['token'] = localStorage.token || ''
+  if (!params.data || (params.data && !params.data.hideLoading)) {
+    loading.open(params.loadText)
+  }
+  // params.headers['token'] = localStorage.token || ''
+  params.headers['token'] = ''
   return params
 })
 
