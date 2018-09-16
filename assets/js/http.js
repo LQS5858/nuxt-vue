@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {Message, Loading} from 'element-ui'
+import NtStore from '~/store/index.js'
 
 const service = axios.create({
   timeout: 10000,
@@ -34,7 +35,7 @@ service.interceptors.request.use(params => {
     loading.open(params.loadText)
   }
   // params.headers['token'] = localStorage.token || ''
-  params.headers['token'] = ''
+  params.headers['token'] = localStorage.getItem('token') || ''
   return params
 })
 
@@ -57,7 +58,7 @@ service.interceptors.response.use(response => {
     error.msg = '请求超时，请重试'
   }
   Message({
-    message: error.msg,
+    message: error.msg || '系統',
     type: 'error',
     duration: 5 * 1000
   })
