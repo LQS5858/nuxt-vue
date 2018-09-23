@@ -70,6 +70,9 @@ module.exports = {
   }, {
     src: '~plugins/axios/index.js',
     ssr: true
+  }, {
+    src: '~plugins/i18n/index.js',
+    ssr: true
   }],
   css:
     [{
